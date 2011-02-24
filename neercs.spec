@@ -12,6 +12,7 @@ URL:		http://caca.zoy.org/wiki/neercs
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,6 +32,8 @@ but provides unique features:
 %setup -q -n %{name}
 install -d .auto
 
+%{__sed} -i -e '/SUBDIRS/ s/doc//' Makefile.am
+
 %build
 %{__aclocal} -I .auto
 %{__autoconf}
@@ -44,7 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
+install -d $RPM_BUILD_ROOT%{_mandir}/man1
+cp -p doc/*.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
