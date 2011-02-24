@@ -1,7 +1,7 @@
 Summary:	neercs, a screen replacement
 Name:		neercs
 Version:	0.1
-Release:	0.1
+Release:	1
 License:	WTFPL v2
 Group:		Applications/Terminal
 # git clone git://git.zoy.org/neercs.git
@@ -11,6 +11,7 @@ Source0:	%{name}.tar.bz2
 URL:		http://caca.zoy.org/wiki/neercs
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libcaca-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
